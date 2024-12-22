@@ -1,16 +1,48 @@
-# agentstack_receipt_manager
-This is the start of your AgentStack project.
+# AgentStack Receipt Manager
 
-~~ Built with AgentStack ~~
+AgentStack Receipt Manager is an automated system designed to find and upload receipts for deductible business expenses. It monitors the Downloads folder for receipts and uploads them to a specified Google Drive folder.
 
-Activate env with `poetry shell`
+## Features
 
-## GDrive Folder Setup
+- Automatically scans your Downloads folder for receipts
+- Identifies potential deductible business expenses
+- Uploads relevant receipts to a designated Google Drive folder
+
+## Prerequisites
+
+- Python 3.10 - 3.12
+- Poetry for dependency management
+- Google Cloud Platform account with Drive API enabled
+- Google Drive folder for receipt storage
+- Not tested with Windows and so assumes you're on a Mac or Linux system
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/agentstack_receipt_manager.git
+   cd agentstack_receipt_manager
+   ```
+
+2. Install dependencies using Poetry:
+   ```
+   poetry install
+   ```
+
+3. Copy the `.env.example` file to `.env` and fill in the required environment variables:
+   ```
+   cp .env.example .env
+   ```
+
+4. Edit the `.env` file with your specific paths and credentials.
+
+## REQUIRED: GDrive Folder Setup
+
 1. Find or create the folder that you want Receipts uploaded to in Gdrive
 2. Copy the URL which will look like this: `https://drive.google.com/drive/folders/{THIS IS YOUR FOLDER ID}`
 3. Copy the folder ID and paste it into the `.env` file under `GDRIVE_UPLOAD_FOLDER_ID`
 
-## GDrive Permissions Setup (Service Account)
+## REQUIRED: GDrive Permissions Setup (Service Account)
 
 1. Visit https://console.cloud.google.com/apis/api/drive.googleapis.com
 2. Create or select a project if required
@@ -23,37 +55,34 @@ Activate env with `poetry shell`
 5. In the Details tab of your service account, you'll see an email like this: `{YOUR SERVICE_ACCOUNT_NAME_HERE}@{YOUR PROJECT HERE}.iam.gserviceaccount.com`
 6. Copy this email. Go to Google Drive and share the Google Drive folder you want to upload to with this email address (ensure they have Editor permissions)
 
+## Usage
 
+To run the receipt manager:
 
-## How to build your Crew
-### With the CLI
-Add an agent using AgentStack with the CLI:
-`agentstack generate agent <agent_name>`
-You can also shorten this to `agentstack g a <agent_name>`
-For wizard support use `agentstack g a <agent_name> --wizard`
-Finally for creation in the CLI alone, use `agentstack g a <agent_name> --role/-r <role> --goal/-g <goal> --backstory/-b <backstory> --model/-m <provider/model>`
+```
+poetry shell
+agentstack run
+```
 
-This will automatically create a new agent in the `agents.yaml` config as well as in your code. Either placeholder strings will be used, or data included in the wizard.
+## Development
 
-Similarly, tasks can be created with `agentstack g t <tool_name>`
+To add new agents or tasks, use the AgentStack CLI:
 
-Add tools with `agentstack tools add <tool_name>` and view tools available with `agentstack tools list`
+```
+agentstack generate agent <agent_name>
+agentstack generate task <task_name>
+```
 
-## How to use your Crew
-In this directory, run `poetry install`
+To add new tools:
 
-To run your project, use the following command:
-`crewai run` or `python src/main.py`
+```
+agentstack tools add <tool_name>
+```
 
-This will initialize your crew of AI agents and begin task execution as defined in your configuration in the main.py file.
+## Contributing
 
-#### Replay Tasks from Latest Crew Kickoff:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-CrewAI now includes a replay feature that allows you to list the tasks from the last run and replay from a specific one. To use this feature, run:
-`crewai replay <task_id>`
-Replace <task_id> with the ID of the task you want to replay.
+## License
 
-#### Reset Crew Memory
-If you need to reset the memory of your crew before running it again, you can do so by calling the reset memory feature:
-`crewai reset-memory`
-This will clear the crew's memory, allowing for a fresh start.
+This project is licensed under the MIT License.
