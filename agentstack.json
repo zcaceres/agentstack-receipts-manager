@@ -1,0 +1,14 @@
+{
+    "framework": "crewai",
+    "tools": [
+        "file_read",
+        "directory_search",
+        "directory_read",
+        "pdf_search",
+        "firecrawl"
+    ],
+    "default_model": "anthropic/claude-3-5-sonnet",
+    "agentstack_version": "0.2.2.2",
+    "template": "none",
+    "template_version": "0"
+}

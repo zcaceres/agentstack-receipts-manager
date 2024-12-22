@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "agentstack_receipt_manager"
+version = "0.0.1"
+description = "This is the start of your AgentStack project."
+authors = ["Name <Email>"]
+license = "MIT"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+agentstack = { extras = ["crewai"], version = "0.2.2.2" }
+firecrawl-py = "^1.6.8"
+google-api-python-client = "^2.156.0"
+google-auth = "^2.37.0"
+google-auth-oauthlib = "^1.2.1"
+
+[tool.poetry.scripts]
+agentstack_receipt_manager = "agentstack_receipt_manager.main:run"
+run_crew = "agentstack_receipt_manager.main:run"
+train = "agentstack_receipt_manager.main:train"
+replay = "agentstack_receipt_manager.main:replay"
+test = "agentstack_receipt_manager.main:test"
